@@ -7,7 +7,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 glass border-b">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -24,25 +24,25 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Buscar músicos o servicios..."
-                className="pl-10 search-input w-full"
+                placeholder="Buscar músicos por categoría..."
+                className="pl-10 bg-secondary border-border focus:border-primary w-full"
               />
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#categorias" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Buscar artistas
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#como-funciona" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Cómo funciona
             </a>
             <Button variant="ghost" size="sm" className="text-muted-foreground">
               Iniciar sesión
             </Button>
-            <Button size="sm" className="btn-primary-glow">
-              <span className="relative z-10">Registrarse</span>
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              Crear perfil
             </Button>
           </nav>
 
@@ -63,22 +63,22 @@ const Header = () => {
               <Input
                 type="search"
                 placeholder="Buscar músicos..."
-                className="pl-10 search-input w-full"
+                className="pl-10 bg-secondary border-border w-full"
               />
             </div>
             <nav className="flex flex-col gap-3">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground py-2">
+              <a href="#categorias" className="text-sm text-muted-foreground hover:text-foreground py-2">
                 Buscar artistas
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground py-2">
+              <a href="#como-funciona" className="text-sm text-muted-foreground hover:text-foreground py-2">
                 Cómo funciona
               </a>
               <div className="flex gap-3 pt-2">
                 <Button variant="ghost" size="sm" className="flex-1">
                   Iniciar sesión
                 </Button>
-                <Button size="sm" className="flex-1 btn-primary-glow">
-                  <span className="relative z-10">Registrarse</span>
+                <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Crear perfil
                 </Button>
               </div>
             </nav>
