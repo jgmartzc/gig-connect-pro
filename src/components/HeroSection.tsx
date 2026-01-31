@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const HeroSection = () => {
+  const scrollToCategories = () => {
+    document.getElementById('categorias')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute inset-0 hero-glow pointer-events-none" />
-      
+    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-primary/5 to-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge */}
@@ -19,7 +20,7 @@ const HeroSection = () => {
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             La forma fácil de conectar{" "}
-            <span className="text-gradient-primary">músicos y eventos</span>
+            <span className="text-primary">músicos y eventos</span>
           </h1>
 
           {/* Subheadline */}
@@ -34,11 +35,16 @@ const HeroSection = () => {
               <Input
                 type="search"
                 placeholder="¿Qué tipo de músico buscas?"
-                className="pl-12 h-12 text-base search-input"
+                className="pl-12 h-12 text-base bg-background border-border focus:border-primary"
+                onFocus={scrollToCategories}
               />
             </div>
-            <Button size="lg" className="h-12 px-8 btn-primary-glow group">
-              <span className="relative z-10 flex items-center gap-2">
+            <Button 
+              size="lg" 
+              className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground group"
+              onClick={scrollToCategories}
+            >
+              <span className="flex items-center gap-2">
                 Buscar
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
@@ -56,7 +62,7 @@ const HeroSection = () => {
               <div className="text-sm text-muted-foreground">Eventos realizados</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">4.9★</div>
+              <div className="text-2xl md:text-3xl font-bold text-primary font-bold">4.9★</div>
               <div className="text-sm text-muted-foreground">Valoración media</div>
             </div>
           </div>

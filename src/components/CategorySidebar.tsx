@@ -2,8 +2,9 @@ import { useState } from "react";
 import { 
   Music, 
   Mic2, 
-  Music2, 
-  Calendar
+  Calendar,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 
 interface Category {
@@ -23,27 +24,24 @@ const categories: Category[] = [
     id: "soloists", 
     name: "Músicos solistas", 
     icon: <Mic2 className="h-5 w-5" />,
-    subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas"]
+    subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas", "Otros"]
   },
   { 
     id: "events", 
     name: "Eventos", 
     icon: <Calendar className="h-5 w-5" />,
-    subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias"]
-  },
-  { 
-    id: "other", 
-    name: "Otros", 
-    icon: <Music2 className="h-4 w-4" /> 
+    subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias", "Otros"]
   },
 ];
 
 interface CategorySidebarProps {
   selectedCategory: string;
+  selectedSubcategory: string | null;
   onSelectCategory: (categoryId: string) => void;
+  onSelectSubcategory: (subcategory: string | null) => void;
 }
 
-const CategorySidebar = ({ selectedCategory, onSelectCategory }: CategorySidebarProps) => {
+const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCategory, onSelectSubcategory }: CategorySidebarProps) => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>("soloists");
 
   return (
@@ -56,18 +54,26 @@ const CategorySidebar = ({ selectedCategory, onSelectCategory }: CategorySidebar
               <button
                 onClick={() => {
                   onSelectCategory(category.id);
+                  onSelectSubcategory(null);
                   if (category.subcategories) {
                     setExpandedCategory(expandedCategory === category.id ? null : category.id);
                   }
                 }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
-                  selectedCategory === category.id
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
+                  selectedCategory === category.id && !selectedSubcategory
                     ? "category-active"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 }`}
               >
-                {category.icon}
-                <span>{category.name}</span>
+                <div className="flex items-center gap-3">
+                  {category.icon}
+                  <span className="font-medium">{category.name}</span>
+                </div>
+                {category.subcategories && (
+                  expandedCategory === category.id 
+                    ? <ChevronDown className="h-4 w-4" />
+                    : <ChevronRight className="h-4 w-4" />
+                )}
               </button>
               
               {/* Subcategories */}
@@ -76,7 +82,15 @@ const CategorySidebar = ({ selectedCategory, onSelectCategory }: CategorySidebar
                   {category.subcategories.map((sub) => (
                     <button
                       key={sub}
-                      className="w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => {
+                        onSelectCategory(category.id);
+                        onSelectSubcategory(sub);
+                      }}
+                      className={`w-full text-left px-3 py-2 text-sm transition-colors rounded-md ${
+                        selectedSubcategory === sub
+                          ? "text-primary font-medium bg-primary/10"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                      }`}
                     >
                       {sub}
                     </button>

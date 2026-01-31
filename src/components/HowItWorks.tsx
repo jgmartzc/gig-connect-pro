@@ -1,4 +1,4 @@
-import { UserPlus, Search, CalendarCheck } from "lucide-react";
+import { Search, Eye, MessageCircle } from "lucide-react";
 
 const steps = [
   {
@@ -7,27 +7,27 @@ const steps = [
     description: "Explora perfiles, escucha demos y filtra por categoría, ubicación o precio.",
   },
   {
-    icon: <CalendarCheck className="h-6 w-6" />,
-    title: "Reserva en segundos",
-    description: "Selecciona fecha, hora y confirma la reserva. Sin llamadas ni emails.",
+    icon: <Eye className="h-6 w-6" />,
+    title: "Ver perfil",
+    description: "Revisa su portfolio, especialidad, valoraciones y precio desde.",
   },
   {
-    icon: <UserPlus className="h-6 w-6" />,
-    title: "Disfruta del evento",
-    description: "El músico llega, toca y tú solo disfrutas. Pago seguro tras el evento.",
+    icon: <MessageCircle className="h-6 w-6" />,
+    title: "Contacta directamente",
+    description: "Usa el chat interno o WhatsApp para acordar los detalles del evento.",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 bg-secondary/30">
+    <section id="como-funciona" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Cómo funciona
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Reservar un músico nunca fue tan fácil. Tres pasos y listo.
+            Contactar un músico nunca fue tan fácil. Tres pasos y listo.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ const HowItWorks = () => {
               </div>
               
               {/* Icon */}
-              <div className="w-16 h-16 rounded-2xl bg-card border border-border flex items-center justify-center mx-auto mb-5 text-primary">
+              <div className="w-16 h-16 rounded-2xl bg-secondary border border-border flex items-center justify-center mx-auto mb-5 text-primary">
                 {step.icon}
               </div>
               
