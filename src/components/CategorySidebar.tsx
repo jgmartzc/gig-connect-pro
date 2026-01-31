@@ -2,13 +2,7 @@ import { useState } from "react";
 import { 
   Music, 
   Mic2, 
-  Piano, 
-  Drum, 
   Music2, 
-  Users,
-  Headphones,
-  Radio,
-  PartyPopper,
   Calendar
 } from "lucide-react";
 
@@ -28,42 +22,14 @@ const categories: Category[] = [
   { 
     id: "soloists", 
     name: "Músicos solistas", 
-    icon: <Mic2 className="h-4 w-4" />,
+    icon: <Mic2 className="h-5 w-5" />,
     subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas"]
   },
   { 
     id: "events", 
     name: "Eventos", 
-    icon: <Calendar className="h-4 w-4" />,
+    icon: <Calendar className="h-5 w-5" />,
     subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias"]
-  },
-  { 
-    id: "bands", 
-    name: "Bandas", 
-    icon: <Users className="h-4 w-4" />,
-    subcategories: ["Rock", "Pop", "Jazz", "Covers"]
-  },
-  { 
-    id: "djs", 
-    name: "DJs", 
-    icon: <Headphones className="h-4 w-4" />,
-    subcategories: ["House", "Techno", "Comercial", "Bodas"]
-  },
-  { 
-    id: "classical", 
-    name: "Música clásica", 
-    icon: <Piano className="h-4 w-4" />,
-    subcategories: ["Cuartetos", "Orquestas", "Ópera"]
-  },
-  { 
-    id: "percussion", 
-    name: "Percusión", 
-    icon: <Drum className="h-4 w-4" /> 
-  },
-  { 
-    id: "electronic", 
-    name: "Electrónica", 
-    icon: <Radio className="h-4 w-4" /> 
   },
   { 
     id: "other", 
