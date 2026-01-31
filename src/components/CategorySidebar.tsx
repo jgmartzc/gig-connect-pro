@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { 
   Music, 
-  Guitar, 
   Mic2, 
   Piano, 
   Drum, 
   Music2, 
   Users,
   Headphones,
-  Radio
+  Radio,
+  PartyPopper,
+  Calendar
 } from "lucide-react";
 
 interface Category {
@@ -28,7 +29,13 @@ const categories: Category[] = [
     id: "soloists", 
     name: "Músicos solistas", 
     icon: <Mic2 className="h-4 w-4" />,
-    subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas"]
+    subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas"]
+  },
+  { 
+    id: "events", 
+    name: "Eventos", 
+    icon: <Calendar className="h-4 w-4" />,
+    subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias"]
   },
   { 
     id: "bands", 
