@@ -1,4 +1,5 @@
-import { Search, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Search, Menu, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -11,12 +12,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">C</span>
             </div>
             <span className="text-xl font-bold text-foreground">Clickgigs</span>
-          </div>
+          </Link>
 
           {/* Desktop Search */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
@@ -41,9 +42,12 @@ const Header = () => {
             <Button variant="ghost" size="sm" className="text-muted-foreground">
               Iniciar sesión
             </Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Crear perfil
-            </Button>
+            <Link to="/crear-perfil">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Zap className="h-4 w-4 mr-1" />
+                Hazte Pro
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -77,9 +81,12 @@ const Header = () => {
                 <Button variant="ghost" size="sm" className="flex-1">
                   Iniciar sesión
                 </Button>
-                <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Crear perfil
-                </Button>
+                <Link to="/crear-perfil" className="flex-1">
+                  <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Zap className="h-4 w-4 mr-1" />
+                    Hazte Pro
+                  </Button>
+                </Link>
               </div>
             </nav>
           </div>
