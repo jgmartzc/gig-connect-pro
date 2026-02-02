@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { Star, MapPin, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface MusicianCardProps {
+  id: number;
   name: string;
   role: string;
   specialty: string;
@@ -15,6 +17,7 @@ interface MusicianCardProps {
 }
 
 const MusicianCard = ({
+  id,
   name,
   role,
   specialty,
@@ -32,19 +35,23 @@ const MusicianCard = ({
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
+      <Link to={`/musico/${id}`}>
+        <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+          <img
+            src={imageUrl}
+            alt={name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      </Link>
 
       {/* Content */}
       <div className="p-4">
         {/* Name & Verified */}
         <div className="flex items-center gap-2 mb-1">
-          <h3 className="font-semibold text-foreground truncate">{name}</h3>
+          <Link to={`/musico/${id}`} className="hover:text-primary transition-colors">
+            <h3 className="font-semibold text-foreground truncate">{name}</h3>
+          </Link>
           {isVerified && (
             <BadgeCheck className="h-4 w-4 text-primary shrink-0" />
           )}
@@ -76,11 +83,13 @@ const MusicianCard = ({
         </div>
 
         {/* CTA */}
-        <Button 
-          className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
-        >
-          Ver perfil
-        </Button>
+        <Link to={`/musico/${id}`}>
+          <Button 
+            className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
+            Ver perfil
+          </Button>
+        </Link>
       </div>
     </div>
   );
