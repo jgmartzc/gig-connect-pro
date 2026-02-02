@@ -1,4 +1,5 @@
-import { ArrowRight, Music, MessageCircle, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Music, MessageCircle, CreditCard, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const MusicianCTA = () => {
@@ -9,9 +10,13 @@ const MusicianCTA = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             {/* Text Content */}
             <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs mb-4">
+                <Zap className="h-3 w-3" />
+                100% Gratuito
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 ¿Eres músico?{" "}
-                <span className="text-primary">Únete gratis</span>
+                <span className="text-primary">Hazte Pro</span>
               </h2>
               <p className="text-muted-foreground mb-6">
                 Crea tu perfil profesional y empieza a recibir contactos de clientes interesados.
@@ -39,12 +44,15 @@ const MusicianCTA = () => {
                 </li>
               </ul>
 
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
-                <span className="flex items-center gap-2">
-                  Crear mi perfil gratis
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Button>
+              <Link to="/crear-perfil">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
+                  <span className="flex items-center gap-2">
+                    <Zap className="h-4 w-4" />
+                    Crear mi perfil gratis
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}

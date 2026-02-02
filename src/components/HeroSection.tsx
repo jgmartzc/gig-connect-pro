@@ -1,4 +1,5 @@
-import { Search, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Search, ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -8,7 +9,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-primary/5 to-background">
+    <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-primary/5 to-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge */}
@@ -49,6 +50,15 @@ const HeroSection = () => {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Button>
+          </div>
+
+          {/* CTA for Musicians */}
+          <div className="mt-6 animate-fade-in" style={{ animationDelay: "0.35s" }}>
+            <Link to="/crear-perfil" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium">
+              <Zap className="h-4 w-4" />
+              ¿Eres músico? Hazte Pro y crea tu perfil gratis
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
           {/* Quick Stats */}
