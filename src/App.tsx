@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import MusicianProfile from "./pages/MusicianProfile";
 import CreateProfile from "./pages/CreateProfile";
+import CreateProProfile from "./pages/CreateProProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/musico/:id" element={<MusicianProfile />} />
           <Route path="/crear-perfil" element={<CreateProfile />} />
+          <Route path="/crear-perfil-pro" element={<CreateProProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
