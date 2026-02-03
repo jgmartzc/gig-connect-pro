@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, ArrowRight, Zap } from "lucide-react";
+import { Search, ArrowRight, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -55,8 +55,8 @@ const HeroSection = () => {
           {/* CTA for Musicians */}
           <div className="mt-6 animate-fade-in" style={{ animationDelay: "0.35s" }}>
             <Link to="/crear-perfil" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-              <Zap className="h-4 w-4" />
-              ¿Eres músico? Hazte Pro y crea tu perfil gratis
+              <Music className="h-4 w-4" />
+              ¿Eres músico? Crea tu perfil gratis
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

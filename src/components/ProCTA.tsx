@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Zap, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, Zap, Star, TrendingUp, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ProCTAProps {
-  variant?: "banner" | "inline" | "floating";
+  variant?: "banner" | "inline" | "floating" | "upgrade";
 }
 
 const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
@@ -16,7 +16,7 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
             className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 group"
           >
             <Zap className="h-4 w-4 mr-2" />
-            Hazte Pro
+            Crear Perfil
             <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
           </Button>
         </Link>
@@ -39,11 +39,52 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
         <Link to="/crear-perfil">
           <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
             <span className="flex items-center gap-1">
-              Hazte Pro
+              Crear Perfil
               <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </span>
           </Button>
         </Link>
+      </div>
+    );
+  }
+
+  // Upgrade variant - for suggesting Free users to upgrade to Pro
+  if (variant === "upgrade") {
+    return (
+      <div className="bg-gradient-to-br from-amber-500/20 via-amber-500/10 to-transparent border border-amber-500/30 rounded-xl p-5">
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
+            <Crown className="h-6 w-6 text-amber-500" />
+          </div>
+          <div className="flex-1">
+            <h4 className="font-bold text-foreground mb-1 flex items-center gap-2">
+              Hazte Pro
+              <span className="text-xs bg-amber-500/20 text-amber-500 px-2 py-0.5 rounded-full">Recomendado</span>
+            </h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              Destaca sobre otros músicos y recibe más contactos con las ventajas Pro.
+            </p>
+            <ul className="space-y-2 mb-4 text-sm">
+              <li className="flex items-center gap-2 text-foreground">
+                <Star className="h-4 w-4 text-amber-500" />
+                Perfil destacado en búsquedas
+              </li>
+              <li className="flex items-center gap-2 text-foreground">
+                <TrendingUp className="h-4 w-4 text-amber-500" />
+                Estadísticas de visitas
+              </li>
+              <li className="flex items-center gap-2 text-foreground">
+                <Zap className="h-4 w-4 text-amber-500" />
+                Badge verificado Pro
+              </li>
+            </ul>
+            <Button className="w-full bg-amber-500 hover:bg-amber-500/90 text-black font-semibold group">
+              <Crown className="h-4 w-4 mr-2" />
+              Actualizar a Pro
+              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -59,10 +100,10 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-foreground mb-1">
-                ¿Eres músico? <span className="text-primary">Hazte Pro</span>
+                ¿Eres músico? <span className="text-primary">Únete gratis</span>
               </h3>
               <p className="text-muted-foreground text-sm">
-                Crea tu perfil gratis y conecta con clientes que buscan tu talento
+                Crea tu perfil y conecta con clientes que buscan tu talento
               </p>
             </div>
           </div>
@@ -82,7 +123,7 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
             <Link to="/crear-perfil">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group whitespace-nowrap">
                 <span className="flex items-center gap-2">
-                  Crear perfil gratis
+                  Crear Perfil Gratis
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Button>
