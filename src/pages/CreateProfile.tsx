@@ -267,6 +267,19 @@ const CreateProfile = () => {
                   <p className="text-xs text-muted-foreground text-center mt-4">
                     Al crear tu perfil aceptas nuestros términos y condiciones.
                   </p>
+
+                  {/* Link to Pro */}
+                  <div className="text-center mt-6 pt-6 border-t border-border">
+                    <p className="text-sm text-muted-foreground">
+                      ¿Quieres destacar más?{" "}
+                      <a
+                        href="/crear-perfil-pro"
+                        className="text-amber-500 hover:underline font-medium"
+                      >
+                        Hazte Pro por 15€/mes
+                      </a>
+                    </p>
+                  </div>
                 </form>
               </div>
             </div>

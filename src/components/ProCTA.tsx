@@ -59,7 +59,7 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
           <div className="flex-1">
             <h4 className="font-bold text-foreground mb-1 flex items-center gap-2">
               Hazte Pro
-              <span className="text-xs bg-amber-500/20 text-amber-500 px-2 py-0.5 rounded-full">Recomendado</span>
+              <span className="text-xs bg-amber-500/20 text-amber-500 px-2 py-0.5 rounded-full">15€/mes</span>
             </h4>
             <p className="text-sm text-muted-foreground mb-4">
               Destaca sobre otros músicos y recibe más contactos con las ventajas Pro.
@@ -67,22 +67,24 @@ const ProCTA = ({ variant = "banner" }: ProCTAProps) => {
             <ul className="space-y-2 mb-4 text-sm">
               <li className="flex items-center gap-2 text-foreground">
                 <Star className="h-4 w-4 text-amber-500" />
-                Perfil destacado en búsquedas
+                Galería de 5 fotos
               </li>
               <li className="flex items-center gap-2 text-foreground">
                 <TrendingUp className="h-4 w-4 text-amber-500" />
-                Estadísticas de visitas
+                Múltiples especialidades
               </li>
               <li className="flex items-center gap-2 text-foreground">
                 <Zap className="h-4 w-4 text-amber-500" />
-                Badge verificado Pro
+                Insignia PRO verificada
               </li>
             </ul>
-            <Button className="w-full bg-amber-500 hover:bg-amber-500/90 text-black font-semibold group">
-              <Crown className="h-4 w-4 mr-2" />
-              Actualizar a Pro
-              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <Link to="/crear-perfil-pro">
+              <Button className="w-full bg-amber-500 hover:bg-amber-500/90 text-black font-semibold group">
+                <Crown className="h-4 w-4 mr-2" />
+                Hazte Pro
+                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
