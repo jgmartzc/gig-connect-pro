@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Music, MessageCircle, CreditCard, Zap } from "lucide-react";
+import { ArrowRight, Music, MessageCircle, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const MusicianCTA = () => {
@@ -11,12 +11,12 @@ const MusicianCTA = () => {
             {/* Text Content */}
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs mb-4">
-                <Zap className="h-3 w-3" />
+                <Music className="h-3 w-3" />
                 100% Gratuito
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 ¿Eres músico?{" "}
-                <span className="text-primary">Hazte Pro</span>
+                <span className="text-primary">Crea tu perfil</span>
               </h2>
               <p className="text-muted-foreground mb-6">
                 Crea tu perfil profesional y empieza a recibir contactos de clientes interesados.
@@ -47,8 +47,8 @@ const MusicianCTA = () => {
               <Link to="/crear-perfil">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
                   <span className="flex items-center gap-2">
-                    <Zap className="h-4 w-4" />
-                    Crear mi perfil gratis
+                    <Music className="h-4 w-4" />
+                    Crear Perfil Gratis
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Button>

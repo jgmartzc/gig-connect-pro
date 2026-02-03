@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, MapPin, Star, BadgeCheck, MessageCircle, Phone } from "lucide-react";
+import { ArrowLeft, MapPin, Star, BadgeCheck, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
+import ProCTA from "@/components/ProCTA";
 
 // Mock data - in real app this would come from API
 const musicians = [
@@ -19,6 +20,7 @@ const musicians = [
     reviewCount: 47,
     imageUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: true,
     description: "Cantautor profesional con más de 10 años de experiencia en eventos privados y corporativos. Especializado en rock clásico y versiones acústicas de temas actuales.",
     experience: "10+ años",
     languages: ["Español", "Inglés"],
@@ -36,6 +38,7 @@ const musicians = [
     reviewCount: 89,
     imageUrl: "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: true,
     description: "Cantante profesional de Soul y R&B con formación en el Berklee College of Music. He actuado en festivales internacionales y eventos exclusivos.",
     experience: "8 años",
     languages: ["Español", "Inglés", "Francés"],
@@ -53,6 +56,7 @@ const musicians = [
     reviewCount: 32,
     imageUrl: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: false,
     description: "Saxofonista con estilo único fusionando jazz, soul y música electrónica. Perfecta para cócteles, bodas y eventos exclusivos.",
     experience: "6 años",
     languages: ["Español", "Inglés"],
@@ -70,6 +74,7 @@ const musicians = [
     reviewCount: 28,
     imageUrl: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&h=600&fit=crop",
     isVerified: false,
+    isPro: false,
     description: "Guitarrista clásico formado en el Conservatorio Superior de Sevilla. Repertorio extenso de música española y clásica internacional.",
     experience: "5 años",
     languages: ["Español"],
@@ -87,6 +92,7 @@ const musicians = [
     reviewCount: 56,
     imageUrl: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: true,
     description: "Cantante de jazz con voz cálida y elegante. Ideal para eventos sofisticados, hoteles de lujo y celebraciones íntimas.",
     experience: "12 años",
     languages: ["Español", "Inglés", "Italiano"],
@@ -104,6 +110,7 @@ const musicians = [
     reviewCount: 19,
     imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=600&fit=crop",
     isVerified: false,
+    isPro: false,
     description: "Guitarrista flamenco de raíces andaluzas. Ofrezco espectáculos de flamenco puro o fusión para todo tipo de eventos.",
     experience: "7 años",
     languages: ["Español"],
@@ -121,6 +128,7 @@ const musicians = [
     reviewCount: 41,
     imageUrl: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: true,
     description: "Violinista clásica con experiencia en orquestas sinfónicas. Especializada en ceremonias de boda y eventos elegantes.",
     experience: "9 años",
     languages: ["Español", "Alemán"],
@@ -138,6 +146,7 @@ const musicians = [
     reviewCount: 63,
     imageUrl: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: false,
     description: "Pianista versátil con formación clásica y experiencia en jazz. Perfecto para cócteles, cenas de gala y ceremonias.",
     experience: "15 años",
     languages: ["Español", "Inglés"],
@@ -155,6 +164,7 @@ const musicians = [
     reviewCount: 35,
     imageUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=600&fit=crop",
     isVerified: false,
+    isPro: false,
     description: "Cantante pop con amplio repertorio de éxitos actuales y clásicos. Energía y profesionalidad en cada actuación.",
     experience: "4 años",
     languages: ["Español", "Inglés"],
@@ -172,6 +182,7 @@ const musicians = [
     reviewCount: 52,
     imageUrl: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: true,
     description: "Saxofonista de jazz con influencias de John Coltrane y Cannonball Adderley. Sesiones en vivo inolvidables.",
     experience: "11 años",
     languages: ["Español", "Inglés"],
@@ -189,6 +200,7 @@ const musicians = [
     reviewCount: 38,
     imageUrl: "https://images.unsplash.com/photo-1552422535-c45813c61732?w=800&h=600&fit=crop",
     isVerified: true,
+    isPro: false,
     description: "Pianista de jazz con estilo propio. Música ambiente elegante para hoteles, restaurantes y eventos privados.",
     experience: "8 años",
     languages: ["Español"],
@@ -206,6 +218,7 @@ const musicians = [
     reviewCount: 29,
     imageUrl: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&h=600&fit=crop",
     isVerified: false,
+    isPro: false,
     description: "Violinista moderno con repertorio de música actual y electrónica. Shows visuales con violín LED disponibles.",
     experience: "5 años",
     languages: ["Español", "Catalán", "Inglés"],
@@ -263,10 +276,16 @@ const MusicianProfile = () => {
             <div className="space-y-4">
               <div className="flex items-start justify-between flex-wrap gap-4">
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-1">
                     <h1 className="text-3xl font-bold text-foreground">{musician.name}</h1>
                     {musician.isVerified && (
                       <BadgeCheck className="h-6 w-6 text-primary" />
+                    )}
+                    {musician.isPro && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 text-xs font-semibold">
+                        <Crown className="h-3 w-3" />
+                        PRO
+                      </span>
                     )}
                   </div>
                   <p className="text-xl text-primary font-medium">{musician.role}</p>
@@ -310,12 +329,17 @@ const MusicianProfile = () => {
           </div>
 
           {/* Right column - Contact */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
             <ContactSection 
               musicianName={musician.name}
               pricePerHour={musician.pricePerHour}
               phone={musician.phone}
             />
+            
+            {/* Show upgrade CTA for free profiles */}
+            {!musician.isPro && (
+              <ProCTA variant="upgrade" />
+            )}
           </div>
         </div>
       </main>

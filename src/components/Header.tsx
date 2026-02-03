@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, Menu, X, Zap } from "lucide-react";
+import { Search, Menu, X, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -44,8 +44,8 @@ const Header = () => {
             </Button>
             <Link to="/crear-perfil">
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Zap className="h-4 w-4 mr-1" />
-                Hazte Pro
+                <Music className="h-4 w-4 mr-1" />
+                Crear Perfil
               </Button>
             </Link>
           </nav>
@@ -83,8 +83,8 @@ const Header = () => {
                 </Button>
                 <Link to="/crear-perfil" className="flex-1">
                   <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Zap className="h-4 w-4 mr-1" />
-                    Hazte Pro
+                    <Music className="h-4 w-4 mr-1" />
+                    Crear Perfil
                   </Button>
                 </Link>
               </div>
