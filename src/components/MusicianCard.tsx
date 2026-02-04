@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Star, MapPin, BadgeCheck } from "lucide-react";
+import { Star, MapPin, BadgeCheck, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface MusicianCardProps {
@@ -13,6 +13,7 @@ interface MusicianCardProps {
   reviewCount: number;
   imageUrl: string;
   isVerified?: boolean;
+  isPro?: boolean;
   delay?: number;
 }
 
@@ -27,11 +28,14 @@ const MusicianCard = ({
   reviewCount,
   imageUrl,
   isVerified = false,
+  isPro = false,
   delay = 0,
 }: MusicianCardProps) => {
   return (
     <div 
-      className="group bg-card border border-border rounded-xl overflow-hidden card-hover stagger-item"
+      className={`group bg-card border rounded-xl overflow-hidden card-hover stagger-item ${
+        isPro ? "border-accent/50 ring-1 ring-accent/20" : "border-border"
+      }`}
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Image */}
@@ -42,6 +46,13 @@ const MusicianCard = ({
             alt={name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          {/* PRO Badge */}
+          {isPro && (
+            <div className="absolute top-3 left-3 badge-pro flex items-center gap-1 shadow-lg">
+              <Crown className="h-3 w-3" />
+              PRO
+            </div>
+          )}
         </div>
       </Link>
 
@@ -72,7 +83,7 @@ const MusicianCard = ({
         {/* Rating & Price */}
         <div className="flex items-center justify-between pt-3 border-t border-border">
           <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-primary fill-current" />
+            <Star className={`h-4 w-4 fill-current ${isPro ? "text-accent" : "text-primary"}`} />
             <span className="font-medium text-foreground">{rating.toFixed(1)}</span>
             <span className="text-xs text-muted-foreground">({reviewCount})</span>
           </div>
@@ -83,13 +94,32 @@ const MusicianCard = ({
         </div>
 
         {/* CTA */}
-        <Link to={`/musico/${id}`}>
-          <Button 
-            className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
-          >
-            Ver perfil
-          </Button>
-        </Link>
+        <div className="mt-4 space-y-2">
+          <Link to={`/musico/${id}`}>
+            <Button 
+              className={`w-full ${
+                isPro 
+                  ? "btn-gold" 
+                  : "bg-primary hover:bg-primary/90 text-primary-foreground"
+              }`}
+            >
+              Ver perfil
+            </Button>
+          </Link>
+          
+          {/* Hazte Pro button for FREE profiles */}
+          {!isPro && (
+            <Link to="/crear-perfil-pro">
+              <Button 
+                variant="outline"
+                className="w-full border-accent/50 text-accent hover:bg-accent/10 hover:text-accent"
+              >
+                <Crown className="h-4 w-4 mr-2" />
+                Hazte Pro
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

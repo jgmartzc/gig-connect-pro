@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, Menu, X, Music } from "lucide-react";
+import { Search, Menu, X, Music, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -13,8 +13,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">C</span>
+            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">C</span>
             </div>
             <span className="text-xl font-bold text-foreground">Clickgigs</span>
           </Link>
@@ -25,14 +25,14 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Buscar músicos por categoría..."
+                placeholder="Buscar artistas..."
                 className="pl-10 bg-secondary border-border focus:border-primary w-full"
               />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4">
             <a href="#categorias" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Buscar artistas
             </a>
@@ -46,6 +46,12 @@ const Header = () => {
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Music className="h-4 w-4 mr-1" />
                 Crear Perfil
+              </Button>
+            </Link>
+            <Link to="/crear-perfil-pro">
+              <Button size="sm" className="btn-gold">
+                <Crown className="h-4 w-4 mr-1" />
+                Hazte Pro
               </Button>
             </Link>
           </nav>
@@ -66,7 +72,7 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Buscar músicos..."
+                placeholder="Buscar artistas..."
                 className="pl-10 bg-secondary border-border w-full"
               />
             </div>
@@ -77,14 +83,20 @@ const Header = () => {
               <a href="#como-funciona" className="text-sm text-muted-foreground hover:text-foreground py-2">
                 Cómo funciona
               </a>
-              <div className="flex gap-3 pt-2">
-                <Button variant="ghost" size="sm" className="flex-1">
+              <div className="flex flex-col gap-2 pt-2">
+                <Button variant="ghost" size="sm">
                   Iniciar sesión
                 </Button>
-                <Link to="/crear-perfil" className="flex-1">
+                <Link to="/crear-perfil">
                   <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                     <Music className="h-4 w-4 mr-1" />
                     Crear Perfil
+                  </Button>
+                </Link>
+                <Link to="/crear-perfil-pro">
+                  <Button size="sm" className="w-full btn-gold">
+                    <Crown className="h-4 w-4 mr-1" />
+                    Hazte Pro
                   </Button>
                 </Link>
               </div>
