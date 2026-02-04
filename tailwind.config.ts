@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+// Custom Clickgigs color tokens
+
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
@@ -60,8 +62,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        gold: "hsl(var(--gold-rating))",
-        verified: "hsl(var(--badge-verified))",
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+        },
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
+        },
         "surface-elevated": "hsl(var(--surface-elevated))",
       },
       borderRadius: {

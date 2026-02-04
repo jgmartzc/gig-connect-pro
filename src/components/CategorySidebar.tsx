@@ -17,19 +17,19 @@ interface Category {
 const categories: Category[] = [
   { 
     id: "all", 
-    name: "Todos", 
-    icon: <Music className="h-4 w-4" /> 
+    name: "Todos los artistas", 
+    icon: <Music className="h-5 w-5" /> 
   },
   { 
     id: "soloists", 
     name: "Músicos solistas", 
-    icon: <Mic2 className="h-5 w-5" />,
+    icon: <Mic2 className="h-6 w-6" />,
     subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas", "Otros"]
   },
   { 
     id: "events", 
     name: "Eventos", 
-    icon: <Calendar className="h-5 w-5" />,
+    icon: <Calendar className="h-6 w-6" />,
     subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias", "Otros"]
   },
 ];
@@ -45,10 +45,10 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
   const [expandedCategory, setExpandedCategory] = useState<string | null>("soloists");
 
   return (
-    <aside className="w-full lg:w-64 shrink-0">
-      <div className="sticky top-24">
-        <h3 className="text-sm font-semibold text-foreground mb-4 px-3">Categorías</h3>
-        <nav className="space-y-1">
+    <aside className="w-full lg:w-72 shrink-0">
+      <div className="sticky top-24 bg-card rounded-xl border border-border p-4">
+        <h3 className="text-lg font-bold text-foreground mb-6 px-2">Categorías</h3>
+        <nav className="space-y-2">
           {categories.map((category) => (
             <div key={category.id}>
               <button
@@ -59,26 +59,26 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
                     setExpandedCategory(expandedCategory === category.id ? null : category.id);
                   }
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl text-base transition-all duration-200 ${
                   selectedCategory === category.id && !selectedSubcategory
-                    ? "category-active"
+                    ? "bg-primary text-primary-foreground shadow-md"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   {category.icon}
-                  <span className="font-medium">{category.name}</span>
+                  <span className="font-semibold">{category.name}</span>
                 </div>
                 {category.subcategories && (
                   expandedCategory === category.id 
-                    ? <ChevronDown className="h-4 w-4" />
-                    : <ChevronRight className="h-4 w-4" />
+                    ? <ChevronDown className="h-5 w-5" />
+                    : <ChevronRight className="h-5 w-5" />
                 )}
               </button>
               
               {/* Subcategories */}
               {category.subcategories && expandedCategory === category.id && (
-                <div className="ml-7 mt-1 space-y-1 animate-fade-in">
+                <div className="ml-6 mt-2 space-y-1 animate-fade-in border-l-2 border-border pl-4">
                   {category.subcategories.map((sub) => (
                     <button
                       key={sub}
@@ -86,9 +86,9 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
                         onSelectCategory(category.id);
                         onSelectSubcategory(sub);
                       }}
-                      className={`w-full text-left px-3 py-2 text-sm transition-colors rounded-md ${
+                      className={`w-full text-left px-4 py-3 text-base transition-colors rounded-lg ${
                         selectedSubcategory === sub
-                          ? "text-primary font-medium bg-primary/10"
+                          ? "text-primary font-semibold bg-primary/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                       }`}
                     >
