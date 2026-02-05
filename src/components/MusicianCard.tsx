@@ -111,11 +111,10 @@ const MusicianCard = ({
           {!isPro && (
             <Link to="/crear-perfil-pro">
               <Button 
-                variant="outline"
-                className="w-full border-accent/50 text-accent hover:bg-accent/10 hover:text-accent"
+                className="w-full btn-gold-vibrant"
               >
                 <Crown className="h-4 w-4 mr-2" />
-                Hazte Pro
+                ¡Hazte Pro!
               </Button>
             </Link>
           )}

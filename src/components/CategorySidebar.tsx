@@ -18,18 +18,18 @@ const categories: Category[] = [
   { 
     id: "all", 
     name: "Todos los artistas", 
-    icon: <Music className="h-5 w-5" /> 
+    icon: <Music className="h-7 w-7" /> 
   },
   { 
     id: "soloists", 
     name: "Músicos solistas", 
-    icon: <Mic2 className="h-6 w-6" />,
+    icon: <Mic2 className="h-7 w-7" />,
     subcategories: ["Cantantes", "Guitarristas", "Pianistas", "Violinistas", "Saxofonistas", "Otros"]
   },
   { 
     id: "events", 
     name: "Eventos", 
-    icon: <Calendar className="h-6 w-6" />,
+    icon: <Calendar className="h-7 w-7" />,
     subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias", "Otros"]
   },
 ];
@@ -47,7 +47,7 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
   return (
     <aside className="w-full lg:w-72 shrink-0">
       <div className="sticky top-24 bg-card rounded-xl border border-border p-4">
-        <h3 className="text-lg font-bold text-foreground mb-6 px-2">Categorías</h3>
+        <h3 className="text-xl font-bold text-foreground mb-6 px-2">Categorías</h3>
         <nav className="space-y-2">
           {categories.map((category) => (
             <div key={category.id}>
@@ -59,7 +59,7 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
                     setExpandedCategory(expandedCategory === category.id ? null : category.id);
                   }
                 }}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl text-base transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-5 py-5 rounded-xl text-lg transition-all duration-200 ${
                   selectedCategory === category.id && !selectedSubcategory
                     ? "bg-primary text-primary-foreground shadow-md"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
@@ -67,7 +67,7 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
               >
                 <div className="flex items-center gap-4">
                   {category.icon}
-                  <span className="font-semibold">{category.name}</span>
+                  <span className="font-bold text-lg">{category.name}</span>
                 </div>
                 {category.subcategories && (
                   expandedCategory === category.id 
@@ -86,7 +86,7 @@ const CategorySidebar = ({ selectedCategory, selectedSubcategory, onSelectCatego
                         onSelectCategory(category.id);
                         onSelectSubcategory(sub);
                       }}
-                      className={`w-full text-left px-4 py-3 text-base transition-colors rounded-lg ${
+                      className={`w-full text-left px-4 py-3 text-lg transition-colors rounded-lg ${
                         selectedSubcategory === sub
                           ? "text-primary font-semibold bg-primary/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"

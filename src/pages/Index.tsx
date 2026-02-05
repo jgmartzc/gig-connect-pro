@@ -5,7 +5,6 @@ import CategorySidebar from "@/components/CategorySidebar";
 import MusicianGrid from "@/components/MusicianGrid";
 import MusicianCTA from "@/components/MusicianCTA";
 import HowItWorks from "@/components/HowItWorks";
-import ProCTA from "@/components/ProCTA";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -19,9 +18,6 @@ const Index = () => {
       <main>
         {/* Hero Section */}
         <HeroSection />
-        
-        {/* Pro CTA Banner */}
-        <ProCTA variant="banner" />
         
         {/* Main Content: Sidebar + Grid */}
         <section id="categorias" className="py-16 bg-secondary/30">
@@ -53,19 +49,9 @@ const Index = () => {
         {/* How It Works */}
         <HowItWorks />
         
-        {/* Pro CTA Inline */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-4">
-            <ProCTA variant="inline" />
-          </div>
-        </section>
-        
         {/* CTA for Musicians */}
         <MusicianCTA />
       </main>
-
-      {/* Floating CTA */}
-      <ProCTA variant="floating" />
 
       <Footer />
     </div>

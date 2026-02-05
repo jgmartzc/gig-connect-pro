@@ -5,7 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
-import ProCTA from "@/components/ProCTA";
+import UpgradeProCTA from "@/components/UpgradeProCTA";
+import ProPhotoGallery from "@/components/ProPhotoGallery";
+import ProStats from "@/components/ProStats";
 
 // Mock data - in real app this would come from API
 const musicians = [
@@ -26,6 +28,14 @@ const musicians = [
     languages: ["Español", "Inglés"],
     equipment: "Equipo propio de sonido incluido",
     phone: "+34612345678",
+    gallery: [
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1501612780327-45045538702b?w=800&h=600&fit=crop",
+    ],
+    stats: { views: 1247, messages: 89, bookings: 34 }
   },
   {
     id: 2,
@@ -44,6 +54,12 @@ const musicians = [
     languages: ["Español", "Inglés", "Francés"],
     equipment: "Rider técnico disponible",
     phone: "+34623456789",
+    gallery: [
+      "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
+    ],
+    stats: { views: 2340, messages: 156, bookings: 67 }
   },
   {
     id: 3,
@@ -98,6 +114,13 @@ const musicians = [
     languages: ["Español", "Inglés", "Italiano"],
     equipment: "Colaboro con pianista y contrabajista",
     phone: "+34656789012",
+    gallery: [
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+    ],
+    stats: { views: 3120, messages: 198, bookings: 89 }
   },
   {
     id: 6,
@@ -134,6 +157,11 @@ const musicians = [
     languages: ["Español", "Alemán"],
     equipment: "Violín italiano del siglo XIX",
     phone: "+34678901234",
+    gallery: [
+      "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&h=600&fit=crop",
+    ],
+    stats: { views: 892, messages: 54, bookings: 28 }
   },
   {
     id: 8,
@@ -188,6 +216,12 @@ const musicians = [
     languages: ["Español", "Inglés"],
     equipment: "Saxofón tenor Selmer Mark VI",
     phone: "+34601234567",
+    gallery: [
+      "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop",
+    ],
+    stats: { views: 1876, messages: 112, bookings: 45 }
   },
   {
     id: 11,
@@ -263,14 +297,18 @@ const MusicianProfile = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left column - Image and basic info */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Main image */}
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-secondary">
-              <img
-                src={musician.imageUrl}
-                alt={musician.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            {/* Photo Gallery for PRO or Single Image for FREE */}
+            {musician.isPro && musician.gallery ? (
+              <ProPhotoGallery images={musician.gallery} musicianName={musician.name} />
+            ) : (
+              <div className="relative aspect-video rounded-xl overflow-hidden bg-secondary">
+                <img
+                  src={musician.imageUrl}
+                  alt={musician.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
 
             {/* Musician info */}
             <div className="space-y-4">
@@ -282,7 +320,7 @@ const MusicianProfile = () => {
                       <BadgeCheck className="h-6 w-6 text-primary" />
                     )}
                     {musician.isPro && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 text-xs font-semibold">
+                      <span className="badge-pro">
                         <Crown className="h-3 w-3" />
                         PRO
                       </span>
@@ -293,7 +331,7 @@ const MusicianProfile = () => {
                 
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1">
-                    <Star className="h-5 w-5 text-primary fill-current" />
+                    <Star className={`h-5 w-5 fill-current ${musician.isPro ? 'text-accent' : 'text-primary'}`} />
                     <span className="font-bold text-foreground text-lg">{musician.rating.toFixed(1)}</span>
                     <span className="text-muted-foreground">({musician.reviewCount} reseñas)</span>
                   </div>
@@ -328,17 +366,28 @@ const MusicianProfile = () => {
             </div>
           </div>
 
-          {/* Right column - Contact */}
+          {/* Right column - Contact and Stats */}
           <div className="lg:col-span-1 space-y-6">
             <ContactSection 
               musicianName={musician.name}
               pricePerHour={musician.pricePerHour}
               phone={musician.phone}
+              isPro={musician.isPro}
             />
+            
+            {/* PRO Stats */}
+            {musician.isPro && musician.stats && (
+              <ProStats 
+                views={musician.stats.views}
+                messages={musician.stats.messages}
+                rating={musician.rating}
+                bookings={musician.stats.bookings}
+              />
+            )}
             
             {/* Show upgrade CTA for free profiles */}
             {!musician.isPro && (
-              <ProCTA variant="upgrade" />
+              <UpgradeProCTA />
             )}
           </div>
         </div>
