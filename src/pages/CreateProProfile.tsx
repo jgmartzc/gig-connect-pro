@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Camera, Music, MapPin, Euro, ArrowRight, Crown, Star, Plus, X, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,6 +42,9 @@ const specialties = [
 
 const CreateProProfile = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const editId = searchParams.get("edit");
+  const isEditing = !!editId;
   const { toast } = useToast();
   const [photos, setPhotos] = useState<string[]>([]);
   const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
@@ -82,10 +85,9 @@ const CreateProProfile = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "¡Perfil PRO creado!",
-      description: "Serás redirigido al pago de tu suscripción de 15€/mes.",
+      title: isEditing ? "¡Perfil PRO actualizado!" : "¡Perfil PRO creado!",
+      description: isEditing ? "Los cambios se han guardado correctamente." : "Serás redirigido al pago de tu suscripción de 15€/mes.",
     });
-    // Aquí iría la integración con Stripe para el pago
     navigate("/");
   };
 
@@ -112,10 +114,14 @@ const CreateProProfile = () => {
                 Suscripción PRO - 15€/mes
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Crea tu perfil <span className="text-amber-500">PRO</span>
+                {isEditing ? "Edita tu perfil " : "Crea tu perfil "}
+                <span className="text-amber-500">PRO</span>
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                Destaca entre la competencia y consigue más clientes con todas las ventajas premium.
+                {isEditing
+                  ? "Actualiza tu información premium para seguir destacando."
+                  : "Destaca entre la competencia y consigue más clientes con todas las ventajas premium."
+                }
               </p>
             </div>
 
@@ -380,7 +386,7 @@ const CreateProProfile = () => {
                   >
                     <span className="flex items-center gap-2">
                       <Crown className="h-4 w-4" />
-                      Crear perfil PRO - 15€/mes
+                      {isEditing ? "Guardar cambios PRO" : "Crear perfil PRO - 15€/mes"}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Button>

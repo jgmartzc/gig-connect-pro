@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Camera, Music, MapPin, Euro, FileText, ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,6 +38,9 @@ const specialties = [
 
 const CreateProfile = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const editId = searchParams.get("edit");
+  const isEditing = !!editId;
   const { toast } = useToast();
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -63,8 +66,8 @@ const CreateProfile = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "¡Perfil creado con éxito!",
-      description: "Tu perfil será revisado y aprobado en las próximas 24 horas.",
+      title: isEditing ? "¡Perfil actualizado!" : "¡Perfil creado con éxito!",
+      description: isEditing ? "Los cambios se han guardado correctamente." : "Tu perfil será revisado y aprobado en las próximas 24 horas.",
     });
     navigate("/");
   };
@@ -90,10 +93,14 @@ const CreateProfile = () => {
                 Registro gratuito
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Crea tu perfil de <span className="text-primary">músico</span>
+                {isEditing ? "Edita tu perfil de " : "Crea tu perfil de "}
+                <span className="text-primary">músico</span>
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                Únete a la comunidad de músicos profesionales y empieza a recibir contactos de clientes.
+                {isEditing 
+                  ? "Actualiza tu información para que los clientes te encuentren mejor."
+                  : "Únete a la comunidad de músicos profesionales y empieza a recibir contactos de clientes."
+                }
               </p>
             </div>
 
@@ -259,7 +266,7 @@ const CreateProfile = () => {
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group"
                   >
                     <span className="flex items-center gap-2">
-                      Crear mi perfil gratis
+                      {isEditing ? "Guardar cambios" : "Crear mi perfil gratis"}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Button>
