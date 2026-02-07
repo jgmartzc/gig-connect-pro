@@ -283,7 +283,7 @@ const CreateProfile = () => {
                         href="/crear-perfil-pro"
                         className="text-amber-500 hover:underline font-medium"
                       >
-                        Hazte Pro por 15€/mes
+                        Hazte Pro por 14.99€/mes
                       </a>
                     </p>
                   </div>

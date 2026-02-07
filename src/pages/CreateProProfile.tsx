@@ -86,7 +86,7 @@ const CreateProProfile = () => {
     e.preventDefault();
     toast({
       title: isEditing ? "¡Perfil PRO actualizado!" : "¡Perfil PRO creado!",
-      description: isEditing ? "Los cambios se han guardado correctamente." : "Serás redirigido al pago de tu suscripción de 15€/mes.",
+      description: isEditing ? "Los cambios se han guardado correctamente." : "Serás redirigido al pago de tu suscripción de 14.99€/mes.",
     });
     navigate("/");
   };
@@ -111,7 +111,7 @@ const CreateProProfile = () => {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 text-sm mb-4">
                 <Crown className="h-4 w-4" />
-                Suscripción PRO - 15€/mes
+                Suscripción PRO - 14.99€/mes
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
                 {isEditing ? "Edita tu perfil " : "Crea tu perfil "}
@@ -144,7 +144,7 @@ const CreateProProfile = () => {
 
                   <div className="mt-6 pt-6 border-t border-amber-500/20">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-amber-500">15€<span className="text-lg text-muted-foreground">/mes</span></div>
+                      <div className="text-3xl font-bold text-amber-500">14.99€<span className="text-lg text-muted-foreground">/mes</span></div>
                       <div className="text-xs text-muted-foreground mt-1">Cancela cuando quieras</div>
                     </div>
                   </div>
@@ -386,7 +386,7 @@ const CreateProProfile = () => {
                   >
                     <span className="flex items-center gap-2">
                       <Crown className="h-4 w-4" />
-                      {isEditing ? "Guardar cambios PRO" : "Crear perfil PRO - 15€/mes"}
+                      {isEditing ? "Guardar cambios PRO" : "Crear perfil PRO - 14.99€/mes"}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Button>
