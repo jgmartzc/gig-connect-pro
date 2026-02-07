@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Camera, Music, MapPin, Euro, ArrowRight, Crown, Star, Plus, X, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,43 +9,13 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const instruments = [
-  "Cantante",
-  "Guitarrista",
-  "Pianista",
-  "Violinista",
-  "Saxofonista",
-  "Baterista",
-  "Bajista",
-  "DJ",
-  "Otro"
-];
-
-const specialties = [
-  "Pop",
-  "Rock",
-  "Jazz",
-  "Clásica",
-  "Flamenco",
-  "Soul & R&B",
-  "Electrónica",
-  "Latin",
-  "Folk",
-  "Blues",
-  "Reggaeton",
-  "Hip Hop",
-  "Country",
-  "Indie",
-  "Metal"
-];
-
+const instruments = ["Cantante", "Guitarrista", "Pianista", "Violinista", "Saxofonista", "Baterista", "Bajista", "DJ", "Otro"];
+const specialties = ["Pop", "Rock", "Jazz", "Clásica", "Flamenco", "Soul & R&B", "Electrónica", "Latin", "Folk", "Blues", "Reggaeton", "Hip Hop", "Country", "Indie", "Metal"];
 const CreateProProfile = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const editId = searchParams.get("edit");
-  const isEditing = !!editId;
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [photos, setPhotos] = useState<string[]>([]);
   const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
   const [formData, setFormData] = useState({
@@ -55,7 +25,6 @@ const CreateProProfile = () => {
     location: "",
     description: ""
   });
-
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -68,12 +37,10 @@ const CreateProProfile = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const removePhoto = (index: number) => {
     const newPhotos = photos.filter((_, i) => i !== index);
     setPhotos(newPhotos);
   };
-
   const toggleSpecialty = (specialty: string) => {
     if (selectedSpecialties.includes(specialty)) {
       setSelectedSpecialties(selectedSpecialties.filter(s => s !== specialty));
@@ -81,47 +48,33 @@ const CreateProProfile = () => {
       setSelectedSpecialties([...selectedSpecialties, specialty]);
     }
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: isEditing ? "¡Perfil PRO actualizado!" : "¡Perfil PRO creado!",
-      description: isEditing ? "Los cambios se han guardado correctamente." : "Serás redirigido al pago de tu suscripción de 14.99€/mes.",
+      title: "¡Perfil PRO creado!",
+      description: "Serás redirigido al pago de tu suscripción de 15€/mes."
     });
+    // Aquí iría la integración con Stripe para el pago
     navigate("/");
   };
-
-  const proFeatures = [
-    "Galería de hasta 5 fotos profesionales",
-    "Insignia PRO verificada en tu perfil",
-    "Aparece primero en los resultados de búsqueda",
-    "Sistema de valoraciones y reseñas",
-    "Estadísticas de visitas a tu perfil",
-    "Soporte prioritario 24/7"
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const proFeatures = ["Galería de hasta 5 fotos profesionales", "Insignia PRO verificada en tu perfil", "Aparece primero en los resultados de búsqueda", "Sistema de valoraciones y reseñas", "Estadísticas de visitas a tu perfil", "Soporte prioritario 24/7"];
+  return <div className="min-h-screen bg-background">
       <Header />
       
       <main className="py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto text-black">
             {/* Header PRO */}
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 text-sm mb-4">
                 <Crown className="h-4 w-4" />
-                Suscripción PRO - 14.99€/mes
+                Suscripción PRO - 15€/mes
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                {isEditing ? "Edita tu perfil " : "Crea tu perfil "}
-                <span className="text-amber-500">PRO</span>
+                Crea tu perfil <span className="text-amber-500">PRO</span>
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                {isEditing
-                  ? "Actualiza tu información premium para seguir destacando."
-                  : "Destaca entre la competencia y consigue más clientes con todas las ventajas premium."
-                }
+                Destaca entre la competencia y consigue más clientes con todas las ventajas premium.
               </p>
             </div>
 
@@ -134,17 +87,15 @@ const CreateProProfile = () => {
                     <h3 className="font-semibold text-foreground">Ventajas PRO</h3>
                   </div>
                   <ul className="space-y-3">
-                    {proFeatures.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    {proFeatures.map((feature, index) => <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
                         <CheckCircle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                         {feature}
-                      </li>
-                    ))}
+                      </li>)}
                   </ul>
 
                   <div className="mt-6 pt-6 border-t border-amber-500/20">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-amber-500">14.99€<span className="text-lg text-muted-foreground">/mes</span></div>
+                      <div className="text-3xl font-bold text-amber-500">15€<span className="text-lg text-muted-foreground">/mes</span></div>
                       <div className="text-xs text-muted-foreground mt-1">Cancela cuando quieras</div>
                     </div>
                   </div>
@@ -209,41 +160,22 @@ const CreateProProfile = () => {
                       Galería de fotos <span className="text-amber-500">(hasta 5)</span>
                     </Label>
                     <div className="grid grid-cols-5 gap-3">
-                      {[0, 1, 2, 3, 4].map((index) => (
-                        <label key={index} className="cursor-pointer relative group">
+                      {[0, 1, 2, 3, 4].map(index => <label key={index} className="cursor-pointer relative group">
                           <div className={`aspect-square rounded-xl border-2 border-dashed flex items-center justify-center overflow-hidden transition-colors ${photos[index] ? 'border-amber-500' : 'border-border hover:border-amber-500/50'}`}>
-                            {photos[index] ? (
-                              <>
+                            {photos[index] ? <>
                                 <img src={photos[index]} alt={`Foto ${index + 1}`} className="w-full h-full object-cover" />
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    removePhoto(index);
-                                  }}
-                                  className="absolute top-1 right-1 p-1 bg-destructive rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                                >
+                                <button type="button" onClick={e => {
+                            e.preventDefault();
+                            removePhoto(index);
+                          }} className="absolute top-1 right-1 p-1 bg-destructive rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                                   <X className="h-3 w-3 text-destructive-foreground" />
                                 </button>
-                              </>
-                            ) : (
-                              <div className="flex flex-col items-center text-muted-foreground">
-                                {index === 0 ? (
-                                  <Camera className="h-6 w-6" />
-                                ) : (
-                                  <Plus className="h-5 w-5" />
-                                )}
-                              </div>
-                            )}
+                              </> : <div className="flex flex-col items-center text-muted-foreground">
+                                {index === 0 ? <Camera className="h-6 w-6" /> : <Plus className="h-5 w-5" />}
+                              </div>}
                           </div>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handlePhotoChange(e, index)}
-                            className="hidden"
-                          />
-                        </label>
-                      ))}
+                          <input type="file" accept="image/*" onChange={e => handlePhotoChange(e, index)} className="hidden" />
+                        </label>)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">La primera foto será tu foto principal</p>
                   </div>
@@ -251,34 +183,22 @@ const CreateProProfile = () => {
                   {/* Name */}
                   <div className="mb-5">
                     <Label htmlFor="name" className="text-foreground mb-2 block">Nombre artístico</Label>
-                    <Input
-                      id="name"
-                      placeholder="Ej: María García"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-secondary border-border"
-                      required
-                    />
+                    <Input id="name" placeholder="Ej: María García" value={formData.name} onChange={e => setFormData({
+                    ...formData,
+                    name: e.target.value
+                  })} className="bg-secondary border-border" required />
                   </div>
 
                   {/* Instrument */}
                   <div className="mb-5">
                     <Label className="text-foreground mb-2 block">Instrumento principal</Label>
                     <div className="flex flex-wrap gap-2">
-                      {instruments.map((inst) => (
-                        <button
-                          key={inst}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, instrument: inst })}
-                          className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                            formData.instrument === inst
-                              ? 'bg-primary text-primary-foreground'
-                              : 'bg-secondary text-muted-foreground hover:bg-secondary/80'
-                          }`}
-                        >
+                      {instruments.map(inst => <button key={inst} type="button" onClick={() => setFormData({
+                      ...formData,
+                      instrument: inst
+                    })} className={`px-3 py-1.5 rounded-full text-sm transition-colors ${formData.instrument === inst ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground hover:bg-secondary/80'}`}>
                           {inst}
-                        </button>
-                      ))}
+                        </button>)}
                     </div>
                   </div>
 
@@ -288,37 +208,18 @@ const CreateProProfile = () => {
                       Especialidades <span className="text-amber-500">(selecciona varias)</span>
                     </Label>
                     <div className="flex flex-wrap gap-2">
-                      {specialties.map((spec) => (
-                        <button
-                          key={spec}
-                          type="button"
-                          onClick={() => toggleSpecialty(spec)}
-                          className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                            selectedSpecialties.includes(spec)
-                              ? 'bg-amber-500 text-black font-medium'
-                              : 'bg-secondary text-muted-foreground hover:bg-secondary/80'
-                          }`}
-                        >
+                      {specialties.map(spec => <button key={spec} type="button" onClick={() => toggleSpecialty(spec)} className={`px-3 py-1.5 rounded-full text-sm transition-colors ${selectedSpecialties.includes(spec) ? 'bg-amber-500 text-black font-medium' : 'bg-secondary text-muted-foreground hover:bg-secondary/80'}`}>
                           {spec}
-                        </button>
-                      ))}
+                        </button>)}
                     </div>
-                    {selectedSpecialties.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {selectedSpecialties.map((spec) => (
-                          <Badge key={spec} variant="outline" className="border-amber-500/50 text-amber-500">
+                    {selectedSpecialties.length > 0 && <div className="mt-3 flex flex-wrap gap-2">
+                        {selectedSpecialties.map(spec => <Badge key={spec} variant="outline" className="border-amber-500/50 text-amber-500">
                             {spec}
-                            <button
-                              type="button"
-                              onClick={() => toggleSpecialty(spec)}
-                              className="ml-1"
-                            >
+                            <button type="button" onClick={() => toggleSpecialty(spec)} className="ml-1">
                               <X className="h-3 w-3" />
                             </button>
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
+                          </Badge>)}
+                      </div>}
                   </div>
 
                   {/* Price & Location */}
@@ -327,29 +228,20 @@ const CreateProProfile = () => {
                       <Label htmlFor="price" className="text-foreground mb-2 block">Precio desde (€/hora)</Label>
                       <div className="relative">
                         <Euro className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="price"
-                          type="number"
-                          placeholder="50"
-                          value={formData.priceFrom}
-                          onChange={(e) => setFormData({ ...formData, priceFrom: e.target.value })}
-                          className="pl-10 bg-secondary border-border"
-                          required
-                        />
+                        <Input id="price" type="number" placeholder="50" value={formData.priceFrom} onChange={e => setFormData({
+                        ...formData,
+                        priceFrom: e.target.value
+                      })} className="pl-10 bg-secondary border-border" required />
                       </div>
                     </div>
                     <div>
                       <Label htmlFor="location" className="text-foreground mb-2 block">Ubicación</Label>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="location"
-                          placeholder="Madrid"
-                          value={formData.location}
-                          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                          className="pl-10 bg-secondary border-border"
-                          required
-                        />
+                        <Input id="location" placeholder="Madrid" value={formData.location} onChange={e => setFormData({
+                        ...formData,
+                        location: e.target.value
+                      })} className="pl-10 bg-secondary border-border" required />
                       </div>
                     </div>
                   </div>
@@ -357,14 +249,10 @@ const CreateProProfile = () => {
                   {/* Description */}
                   <div className="mb-6">
                     <Label htmlFor="description" className="text-foreground mb-2 block">Descripción profesional</Label>
-                    <Textarea
-                      id="description"
-                      placeholder="Cuéntanos sobre tu experiencia, estilo musical, equipamiento y qué tipo de eventos realizas..."
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      className="bg-secondary border-border min-h-[120px]"
-                      required
-                    />
+                    <Textarea id="description" placeholder="Cuéntanos sobre tu experiencia, estilo musical, equipamiento y qué tipo de eventos realizas..." value={formData.description} onChange={e => setFormData({
+                    ...formData,
+                    description: e.target.value
+                  })} className="bg-secondary border-border min-h-[120px]" required />
                   </div>
 
                   {/* Valoraciones Preview */}
@@ -379,14 +267,10 @@ const CreateProProfile = () => {
                   </div>
 
                   {/* Submit */}
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-semibold group"
-                  >
+                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-semibold group">
                     <span className="flex items-center gap-2">
                       <Crown className="h-4 w-4" />
-                      {isEditing ? "Guardar cambios PRO" : "Crear perfil PRO - 14.99€/mes"}
+                      Crear perfil PRO - 15€/mes
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Button>
@@ -399,11 +283,7 @@ const CreateProProfile = () => {
                   <div className="text-center mt-6 pt-6 border-t border-border">
                     <p className="text-sm text-muted-foreground">
                       ¿Prefieres empezar gratis?{" "}
-                      <button
-                        type="button"
-                        onClick={() => navigate("/crear-perfil")}
-                        className="text-primary hover:underline"
-                      >
+                      <button type="button" onClick={() => navigate("/crear-perfil")} className="text-primary hover:underline">
                         Crear perfil gratuito
                       </button>
                     </p>
@@ -416,8 +296,6 @@ const CreateProProfile = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default CreateProProfile;
