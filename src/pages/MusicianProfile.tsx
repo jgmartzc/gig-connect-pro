@@ -366,7 +366,7 @@ const MusicianProfile = () => {
 
               {/* Edit Profile Button */}
               <div className="pt-4 border-t border-border">
-                <Link to={musician.isPro ? "/crear-perfil-pro" : "/crear-perfil"}>
+                <Link to={`${musician.isPro ? "/crear-perfil-pro" : "/crear-perfil"}?edit=${musician.id}`}>
                   <Button variant="outline" className="gap-2">
                     <Pencil className="h-4 w-4" />
                     Editar mi perfil
