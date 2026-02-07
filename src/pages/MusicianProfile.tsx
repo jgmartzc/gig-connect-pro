@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, MapPin, Star, BadgeCheck, Crown } from "lucide-react";
+import { ArrowLeft, MapPin, Star, BadgeCheck, Crown, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
@@ -362,6 +362,16 @@ const MusicianProfile = () => {
               <div className="pt-4 border-t border-border">
                 <h2 className="text-lg font-semibold text-foreground mb-3">Equipamiento</h2>
                 <p className="text-muted-foreground">{musician.equipment}</p>
+              </div>
+
+              {/* Edit Profile Button */}
+              <div className="pt-4 border-t border-border">
+                <Link to={musician.isPro ? "/crear-perfil-pro" : "/crear-perfil"}>
+                  <Button variant="outline" className="gap-2">
+                    <Pencil className="h-4 w-4" />
+                    Editar mi perfil
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

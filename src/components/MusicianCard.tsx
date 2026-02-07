@@ -94,7 +94,7 @@ const MusicianCard = ({
         </div>
 
         {/* CTA */}
-        <div className="mt-4 space-y-2">
+        <div className="mt-4">
           <Link to={`/musico/${id}`}>
             <Button 
               className={`w-full ${
@@ -106,18 +106,6 @@ const MusicianCard = ({
               Ver perfil
             </Button>
           </Link>
-          
-          {/* Hazte Pro button for FREE profiles */}
-          {!isPro && (
-            <Link to="/crear-perfil-pro">
-              <Button 
-                className="w-full btn-gold-vibrant"
-              >
-                <Crown className="h-4 w-4 mr-2" />
-                ¡Hazte Pro!
-              </Button>
-            </Link>
-          )}
         </div>
       </div>
     </div>
