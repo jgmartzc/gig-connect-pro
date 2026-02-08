@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { MessageCircle, Send, Crown, Sparkles, Lock } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+
 
 interface ContactSectionProps {
   musicianName: string;
@@ -64,7 +64,7 @@ const ContactSection = ({ musicianName, pricePerHour, phone, isPro = false }: Co
       </Card>
 
       {/* WhatsApp button - ONLY for PRO */}
-      {isPro ? (
+      {isPro && (
         <Button 
           onClick={handleWhatsApp}
           className="w-full bg-[#25D366] hover:bg-[#20BD5A] text-white gap-2"
@@ -75,28 +75,6 @@ const ContactSection = ({ musicianName, pricePerHour, phone, isPro = false }: Co
           </svg>
           Contactar por WhatsApp
         </Button>
-      ) : (
-        /* Upgrade CTA for FREE profiles - WhatsApp locked */
-        <div className="relative">
-          <Button 
-            disabled
-            className="w-full bg-muted text-muted-foreground gap-2 cursor-not-allowed"
-            size="lg"
-          >
-            <Lock className="h-4 w-4" />
-            WhatsApp (solo PRO)
-          </Button>
-          <Link to="/crear-perfil-pro" className="block mt-3">
-            <Button 
-              className="w-full btn-gold-vibrant group"
-              size="lg"
-            >
-              <Crown className="h-4 w-4 mr-2" />
-              ¡Hazte Pro para contactar!
-              <Sparkles className="h-4 w-4 ml-2" />
-            </Button>
-          </Link>
-        </div>
       )}
 
       {/* Internal chat form */}

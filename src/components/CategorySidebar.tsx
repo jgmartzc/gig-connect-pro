@@ -30,7 +30,7 @@ const categories: Category[] = [
     id: "events", 
     name: "Eventos", 
     icon: <Calendar className="h-7 w-7" />,
-    subcategories: ["Bodas", "Eventos corporativos", "Restaurantes", "Fiestas privadas", "Ceremonias", "Otros"]
+    subcategories: ["Aniversarios", "Bodas", "Ceremonias", "Cumpleaños", "Eventos corporativos", "Fiestas privadas", "Hoteles", "Restaurantes", "Otros"]
   },
 ];
 
