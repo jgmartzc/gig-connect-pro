@@ -23,17 +23,15 @@ const instruments = [
 ];
 
 const specialties = [
-  "Pop",
-  "Rock",
-  "Jazz",
-  "Clásica",
-  "Flamenco",
-  "Soul & R&B",
-  "Electrónica",
-  "Latin",
-  "Folk",
-  "Blues",
-  "Otro"
+  "Aniversarios",
+  "Bodas",
+  "Ceremonias",
+  "Cumpleaños",
+  "Eventos corporativos",
+  "Fiestas privadas",
+  "Hoteles",
+  "Restaurantes",
+  "Otros"
 ];
 
 const CreateProfile = () => {
@@ -234,10 +232,9 @@ const CreateProfile = () => {
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input
                           id="location"
-                          placeholder="Madrid"
-                          value={formData.location}
-                          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                          value="Barcelona"
                           className="pl-10 bg-secondary border-border"
+                          readOnly
                           required
                         />
                       </div>

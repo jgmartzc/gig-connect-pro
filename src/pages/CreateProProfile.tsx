@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 const instruments = ["Cantante", "Guitarrista", "Pianista", "Violinista", "Saxofonista", "Baterista", "Bajista", "DJ", "Otro"];
-const specialties = ["Pop", "Rock", "Jazz", "Clásica", "Flamenco", "Soul & R&B", "Electrónica", "Latin", "Folk", "Blues", "Reggaeton", "Hip Hop", "Country", "Indie", "Metal"];
+const specialties = ["Aniversarios", "Bodas", "Ceremonias", "Cumpleaños", "Eventos corporativos", "Fiestas privadas", "Hoteles", "Restaurantes", "Otros"];
 const CreateProProfile = () => {
   const navigate = useNavigate();
   const {
@@ -238,10 +238,7 @@ const CreateProProfile = () => {
                       <Label htmlFor="location" className="text-foreground mb-2 block">Ubicación</Label>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="location" placeholder="Madrid" value={formData.location} onChange={e => setFormData({
-                        ...formData,
-                        location: e.target.value
-                      })} className="pl-10 bg-secondary border-border" required />
+                        <Input id="location" value="Barcelona" className="pl-10 bg-secondary border-border" readOnly required />
                       </div>
                     </div>
                   </div>
